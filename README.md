@@ -14,3 +14,11 @@ On Day 2 of my MySQL learning journey, I explored the core concepts of **Databas
 ## 📅 Day 3 – SQL Identifiers and SQL Commands
 
 On Day 3 of my MySQL learning journey, I explored SQL fundamentals and learned about SQL Identifiers, SQL Commands, and their categories. I studied DDL, DML, DCL, TCL, and DQL commands along with their real-world uses. I also learned how to create and drop databases, create tables, and understand the structure of relational databases. This session strengthened my understanding of SQL fundamentals and prepared me for writing database queries.
+
+## 📅 Day 4 – SQL Data Types and Constraints
+
+On Day 4 of my MySQL learning journey, I explored **SQL Data Types** and **Constraints**, which are essential for designing accurate and reliable database tables. I learned about different data types, including numeric, character, and date/time types, along with constraints such as **NOT NULL**, **UNIQUE**, **PRIMARY KEY**, **FOREIGN KEY**, **DEFAULT**, and **CHECK**. This session strengthened my understanding of defining table structures, maintaining data integrity, and designing well-structured relational databases.
+
+## 📅 Day 5 – Data Manipulation Language (DML)
+
+On Day 5 of my MySQL learning journey, I explored **Data Manipulation Language (DML)** commands used to manage and modify data in database tables. I practiced **INSERT**, **UPDATE**, and **DELETE** operations, and learned the differences between **TRUNCATE** and **DROP** commands. This session strengthened my understanding of performing data manipulation tasks and managing database records efficiently using SQL.
