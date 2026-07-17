@@ -1,0 +1,190 @@
+Day-5
+=====
+DML
+===
+1.insert
+--------
+syntax: insert into table-name(column names values(values);
+
+mysql> INSERT INTO EMPLOYEES(EMPID,FIRSTNAME,LASTNAME,AGE,DOJ,ADDRESS,DEPT)VALUES
+    -> ('E001','LOHI','SAI',20,'2026-04-20','HYD','PYTHON');
+Query OK, 1 row affected (0.11 sec)
+
+mysql> SELECT*FROM EMPLOYEES;
++-------+-----------+----------+------+------------+---------+--------+
+| EMPID | FIRSTNAME | LASTNAME | AGE  | DOJ        | ADDRESS | DEPT   |
++-------+-----------+----------+------+------------+---------+--------+
+| E001  | LOHI      | SAI      |   20 | 2026-04-20 | HYD     | PYTHON |
++-------+-----------+----------+------+------------+---------+--------+
+1 row in set (0.02 sec)
+
+mysql> INSERT INTO EMPLOYEES(EMPID,FIRSTNAME,LASTNAME,AGE,DOJ,ADDRESS,DEPT)VALUES
+    -> ('E002','UDAY','SAI',21,'2026-05-25','VIZ','JAVA'),
+    -> ('E003','SHIVA','ARJUN',27,'2024-03-26','VIJ','HR');
+Query OK, 2 rows affected (0.02 sec)
+mysql> SELECT*FROM EMPLOYEES;
++-------+-----------+----------+------+------------+---------+--------+
+| EMPID | FIRSTNAME | LASTNAME | AGE  | DOJ        | ADDRESS | DEPT   |
++-------+-----------+----------+------+------------+---------+--------+
+| E001  | LOHI      | SAI      |   20 | 2026-04-20 | HYD     | HR     |
+| E002  | UDAY      | SAI      |   21 | 2026-05-25 | VIZ     | JAVA   |
+| E003  | SHIVA     | ARJUN    |   27 | 2024-03-26 | VIJ     | HR     |
++-------+-----------+----------+------+------------+---------+--------+
+3 rows in set (0.02 sec)
+
+mysql> INSERT INTO EMPLOYEES(EMPID,FIRSTNAME,DOJ,DEPT)
+    -> VALUES
+    -> ('E005','ARJUN','1997-05-24','MARKETING');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> SELECT*FROM EMPLOYEES;
++-------+-----------+----------+------+------------+---------+-----------+
+| EMPID | FIRSTNAME | LASTNAME | AGE  | DOJ        | ADDRESS | DEPT      |
++-------+-----------+----------+------+------------+---------+-----------+
+| E001  | LOHI      | SAI      |   20 | 2026-04-20 | HYD     | PYTHON    |
+| E002  | UDAY      | SAI      |   21 | 2026-05-25 | VIZ     | JAVA      |
+| E003  | SHIVA     | ARJUN    |   27 | 2024-03-26 | VIJ     | HR        |
+| E004  | SAI       | KRISHNA  |   28 | 2023-04-16 | PUNE    | ADMIN     |
+| E005  | ARJUN     | NULL     | NULL | 1997-05-24 | NULL    | MARKETING |
++-------+-----------+----------+------+------------+---------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> INSERT INTO EMPLOYEES SET
+    -> EMPID='E006',
+    -> FIRSTNAME='SUDHEER',
+    -> LASTNAME='KUMAR',
+    -> AGE=29,
+    -> DOJ='2020-12-03',
+    -> ADDRESS='MUMBAI',
+    -> DEPT='SALES';
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT*FROM EMPLOYEES;
++-------+-----------+----------+------+------------+---------+-----------+
+| EMPID | FIRSTNAME | LASTNAME | AGE  | DOJ        | ADDRESS | DEPT      |
++-------+-----------+----------+------+------------+---------+-----------+
+| E001  | LOHI      | SAI      |   20 | 2026-04-20 | HYD     | PYTHON    |
+| E002  | UDAY      | SAI      |   21 | 2026-05-25 | VIZ     | JAVA      |
+| E003  | SHIVA     | ARJUN    |   27 | 2024-03-26 | VIJ     | HR        |
+| E004  | SAI       | KRISHNA  |   28 | 2023-04-16 | PUNE    | ADMIN     |
+| E005  | ARJUN     | NULL     | NULL | 1997-05-24 | NULL    | MARKETING |
+| E006  | SUDHEER   | KUMAR    |   29 | 2020-12-03 | MUMBAI  | SALES     |
++-------+-----------+----------+------+------------+---------+-----------+
+6 rows in set (0.00 sec)
+
+
+
+2.update
+--------
+syntax: UPDATE TABLE-NAME SET COLUMN-NAME=UPDATE-VALE WHERE SOME CONDITION;
+
+mysql> UPDATE EMPLOYEES SET LASTNAME='SANDRA' WHERE EMPID='E006';
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT*FROM EMPLOYEES;
++-------+-----------+----------+------+------------+---------+-----------+
+| EMPID | FIRSTNAME | LASTNAME | AGE  | DOJ        | ADDRESS | DEPT      |
++-------+-----------+----------+------+------------+---------+-----------+
+| E001  | LOHI      | SAI      |   20 | 2026-04-20 | HYD     | PYTHON    |
+| E002  | UDAY      | SAI      |   21 | 2026-05-25 | VIZ     | JAVA      |
+| E003  | SHIVA     | ARJUN    |   27 | 2024-03-26 | VIJ     | HR        |
+| E004  | SAI       | KRISHNA  |   28 | 2023-04-16 | PUNE    | ADMIN     |
+| E005  | ARJUN     | NULL     | NULL | 1997-05-24 | NULL    | MARKETING |
+| E006  | SUDHEER   | SANDRA   |   29 | 2020-12-03 | MUMBAI  | SALES     |
++-------+-----------+----------+------+------------+---------+-----------+
+6 rows in set (0.00 sec)
+
+mysql> UPDATE EMPLOYEES SET FIRSTNAME='KUSUMA',LASTNAME='PRIYA',AGE=30,ADDRESS='GOA' WHERE EMPID='E006';
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT*FROM EMPLOYEES;
++-------+-----------+----------+------+------------+---------+-----------+
+| EMPID | FIRSTNAME | LASTNAME | AGE  | DOJ        | ADDRESS | DEPT      |
++-------+-----------+----------+------+------------+---------+-----------+
+| E001  | LOHI      | SAI      |   20 | 2026-04-20 | HYD     | PYTHON    |
+| E002  | UDAY      | SAI      |   21 | 2026-05-25 | VIZ     | JAVA      |
+| E003  | SHIVA     | ARJUN    |   27 | 2024-03-26 | VIJ     | HR        |
+| E004  | SAI       | KRISHNA  |   28 | 2023-04-16 | PUNE    | ADMIN     |
+| E005  | ARJUN     | NULL     | NULL | 1997-05-24 | NULL    | MARKETING |
+| E006  | KUSUMA    | PRIYA    |   30 | 2020-12-03 | GOA     | SALES     |
++-------+-----------+----------+------+------------+---------+-----------+
+6 rows in set (0.02 sec)
+
+ mysql> UPDATE EMPLOYEES SET DEPT='PYTHON' WHERE EMPID='E004';
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT*FROM EMPLOYEES;
++-------+-----------+----------+------+------------+---------+-----------+
+| EMPID | FIRSTNAME | LASTNAME | AGE  | DOJ        | ADDRESS | DEPT      |
++-------+-----------+----------+------+------------+---------+-----------+
+| E001  | LOHI      | SAI      |   20 | 2026-04-20 | HYD     | PYTHON    |
+| E002  | UDAY      | SAI      |   21 | 2026-05-25 | VIZ     | JAVA      |
+| E003  | SHIVA     | ARJUN    |   27 | 2024-03-26 | VIJ     | HR        |
+| E004  | SAI       | KRISHNA  |   28 | 2023-04-16 | PUNE    | PYTHON    |
+| E005  | ARJUN     | NULL     | NULL | 1997-05-24 | NULL    | MARKETING |
+| E006  | KUSUMA    | PRIYA    |   30 | 2020-12-03 | GOA     | SALES     |
++-------+-----------+----------+------+------------+---------+-----------+
+6 rows in set (0.02 sec)
+
+mysql> UPDATE EMPLOYEES SET DEPT='DEV' WHERE EMPID='E006';
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT*FROM EMPLOYEES;
++-------+-----------+----------+------+------------+---------+-----------+
+| EMPID | FIRSTNAME | LASTNAME | AGE  | DOJ        | ADDRESS | DEPT      |
++-------+-----------+----------+------+------------+---------+-----------+
+| E001  | LOHI      | SAI      |   20 | 2026-04-20 | HYD     | PYTHON    |
+| E002  | UDAY      | SAI      |   21 | 2026-05-25 | VIZ     | JAVA      |
+| E003  | SHIVA     | ARJUN    |   27 | 2024-03-26 | VIJ     | HR        |
+| E004  | SAI       | KRISHNA  |   28 | 2023-04-16 | PUNE    | PYTHON    |
+| E005  | ARJUN     | NULL     | NULL | 1997-05-24 | NULL    | MARKETING |
+| E006  | KUSUMA    | PRIYA    |   30 | 2020-12-03 | GOA     | DEV       |
++-------+-----------+----------+------+------------+---------+-----------+
+6 rows in set (0.02 sec)
+
+3.DELETE
+---------
+syntax: delete from table-name where condition;
+
+mysql> DELETE FROM EMPLOYEES WHERE LASTNAME='SAI';
+Query OK, 6 rows affected (0.03 sec)
+mysql> SELECT*FROM EMPLOYEES;
++-------+-----------+----------+------+------------+---------+-----------+
+| EMPID | FIRSTNAME | LASTNAME | AGE  | DOJ        | ADDRESS | DEPT      |
++-------+-----------+----------+------+------------+---------+-----------+
+| E003  | SHIVA     | ARJUN    |   27 | 2024-03-26 | VIJ     | HR        |
+| E004  | SAI       | KRISHNA  |   28 | 2023-04-16 | PUNE    | PYTHON    |
+| E005  | ARJUN     | NULL     | NULL | 1997-05-24 | NULL    | MARKETING |
+| E006  | KUSUMA    | PRIYA    |   30 | 2020-12-03 | GOA     | DEV       |
++-------+-----------+----------+------+------------+---------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> DELETE FROM EMPLOYEES WHERE EMPID='E003';
+Query OK, 2 rows affected (0.03 sec)
+
+mysql> SELECT*FROM EMPLOYEES;
++-------+-----------+----------+------+------------+---------+-----------+
+| EMPID | FIRSTNAME | LASTNAME | AGE  | DOJ        | ADDRESS | DEPT      |
++-------+-----------+----------+------+------------+---------+-----------+
+| E004  | SAI       | KRISHNA  |   28 | 2023-04-16 | PUNE    | PYTHON    |
+| E005  | ARJUN     | NULL     | NULL | 1997-05-24 | NULL    | MARKETING |
+| E006  | KUSUMA    | PRIYA    |   30 | 2020-12-03 | GOA     | DEV       |
++-------+-----------+----------+------+------------+---------+-----------+
+3 rows in set (0.02 sec)
+
+mysql> TRUNCATE TABLE EMPLOYEES;
+Query OK, 0 rows affected (0.18 sec)
+
+mysql> SELECT*FROM EMPLOYEES;
+Empty set (0.01 sec)
+
+mysql> DROP TABLE EMPLOYEES;
+Query OK, 0 rows affected (0.07 sec)
+
+Truncate: used to delete data not the table
+Drop: used to delete entire the table 
+
