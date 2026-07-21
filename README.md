@@ -30,3 +30,7 @@ On Day 6 of my MySQL learning journey, I explored **AUTO_INCREMENT**, **Generate
 ## 📅 Day 7 – TCL Commands and Database Locks
 
 On Day 7 of my MySQL learning journey, I explored **Transaction Control Language (TCL)** and **database locking mechanisms**. I learned about transaction management, **ACID properties**, and TCL commands such as **COMMIT, ROLLBACK, and SAVEPOINT**. I also studied different types of transactions (**Local and Global**) and understood how locks help maintain data consistency when multiple users access the database simultaneously. This session strengthened my understanding of transaction management, concurrency control, and database integrity in MySQL.
+
+## 📅 Day 8 – Constraints and Referential Actions
+
+On Day 8 of my MySQL learning journey, I explored **Constraints** and **Referential Actions**, which are essential for maintaining data integrity and consistency in relational databases. I learned about **NOT NULL, UNIQUE, PRIMARY KEY, COMPOSITE KEY, FOREIGN KEY, CHECK, and DEFAULT** constraints, and understood how they prevent invalid data and enforce relationships between tables. I also studied referential actions such as **ON DELETE CASCADE, ON UPDATE CASCADE, ON DELETE SET NULL, and ON UPDATE SET NULL**. This session strengthened my understanding of database design, table relationships, and enforcing data integrity rules in MySQL.
