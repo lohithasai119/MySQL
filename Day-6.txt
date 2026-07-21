@@ -1,0 +1,305 @@
+Day-6
+=====
+
+mysql> CREATE TABLE EMPLOYEES(
+    -> EMPID INT AUTO_INCREMENT PRIMARY KEY,
+    -> NAME VARCHAR(20),
+    -> DEPARTMENT VARCHAR(30)
+    -> );
+Query OK, 0 rows affected (0.36 sec)
+
+mysql> DESC EMPLOYEES;
++------------+-------------+------+-----+---------+----------------+
+| Field      | Type        | Null | Key | Default | Extra          |
++------------+-------------+------+-----+---------+----------------+
+| EMPID      | int         | NO   | PRI | NULL    | auto_increment |
+| NAME       | varchar(20) | YES  |     | NULL    |                |
+| DEPARTMENT | varchar(30) | YES  |     | NULL    |                |
++------------+-------------+------+-----+---------+----------------+
+3 rows in set (0.07 sec)
+
+mysql> INSERT INTO EMPLOYEES (NAME,DEPARTMENT) VALUES
+    -> ('MALLI','IT'),
+    -> ('INDU','HR'),
+    -> ('MOUNIKA','FINANCE');
+Query OK, 3 rows affected (0.05 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> SELECT*FROM EMPLOYEES;
++-------+---------+------------+
+| EMPID | NAME    | DEPARTMENT |
++-------+---------+------------+
+|     1 | MALLI   | IT         |
+|     2 | INDU    | HR         |
+|     3 | MOUNIKA | FINANCE    |
++-------+---------+------------+
+3 rows in set (0.01 sec)
+
+mysql> SHOW TABLES;
++---------------+
+| Tables_in_da4 |
++---------------+
+| company_staff |
+| employees     |
++---------------+
+2 rows in set (0.03 sec)
+
+mysql> CREATE TABLE BACKUPEMPLOYEES AS SELECT*FROM EMPLOYEES;
+Query OK, 3 rows affected (0.07 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> SHOW TABLES;
++-----------------+
+| Tables_in_da4   |
++-----------------+
+| backupemployees |
+| company_staff   |
+| employees       |
++-----------------+
+3 rows in set (0.00 sec)
+
+mysql> CREATE TABLE PRODUCTS(
+    -> PRODUCT INT AUTO_INCREMENT PRIMARY KEY,
+    -> PRODUCTNAME VARCHAR(20),
+    -> PRICE DECIMAL(10,2),
+    -> QUANTITY INT,
+    -> TOTALAMOUNT DECIMAL(10,2) GENERATED ALWAYS AS(PRICE*QUANTITY) STORED
+    -> );
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> DESC PRODUCTS;
++-------------+---------------+------+-----+---------+------------------+
+| Field       | Type          | Null | Key | Default | Extra            |
++-------------+---------------+------+-----+---------+------------------+
+| PRODUCT     | int           | NO   | PRI | NULL    | auto_increment   |
+| PRODUCTNAME | varchar(20)   | YES  |     | NULL    |                  |
+| PRICE       | decimal(10,2) | YES  |     | NULL    |                  |
+| QUANTITY    | int           | YES  |     | NULL    |                  |
+| TOTALAMOUNT | decimal(10,2) | YES  |     | NULL    | STORED GENERATED |
++-------------+---------------+------+-----+---------+------------------+
+5 rows in set (0.00 sec)
+
+mysql> INSERT INTO PRODUCTS(PRODUCTNAME,PRICE,QUANTITY)
+    -> VALUES
+    -> ('VIVO MOBILE',19999.99,2),
+    -> ('EAR PHONES',999.99,3),
+    -> ('CASES',99.99,5);
+Query OK, 3 rows affected (0.03 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> SELECT*FROM PRODUCTS;
++---------+-------------+----------+----------+-------------+
+| PRODUCT | PRODUCTNAME | PRICE    | QUANTITY | TOTALAMOUNT |
++---------+-------------+----------+----------+-------------+
+|       1 | VIVO MOBILE | 19999.99 |        2 |    39999.98 |
+|       2 | EAR PHONES  |   999.99 |        3 |     2999.97 |
+|       3 | CASES       |    99.99 |        5 |      499.95 |
++---------+-------------+----------+----------+-------------+
+3 rows in set (0.02 sec)
+
+mysql> UPDATE PRODUCTS SET PRICE=18999.99 WHERE PRODUCT=1;
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT*FROM PRODUCTS;
++---------+-------------+----------+----------+-------------+
+| PRODUCT | PRODUCTNAME | PRICE    | QUANTITY | TOTALAMOUNT |
++---------+-------------+----------+----------+-------------+
+|       1 | VIVO MOBILE | 18999.99 |        2 |    37999.98 |
+|       2 | EAR PHONES  |   999.99 |        3 |     2999.97 |
+|       3 | CASES       |    99.99 |        5 |      499.95 |
++---------+-------------+----------+----------+-------------+
+3 rows in set (0.00 sec)
+
+*********************************************
+DCL
+===
+Grant 
+Revoke
+
+
+mysql> CREATE TABLE STUDENTS(
+    -> STUID INT AUTO_INCREMENT PRIMARY KEY,
+    -> STUNAME VARCHAR(20),
+    -> STUMOBILE VARCHAR(10),
+    -> STUMARKS INT(3)
+    -> );
+mysql> DESC STUDENTS;
++-----------+-------------+------+-----+---------+----------------+
+| Field     | Type        | Null | Key | Default | Extra          |
++-----------+-------------+------+-----+---------+----------------+
+| STUID     | int         | NO   | PRI | NULL    | auto_increment |
+| STUNAME   | varchar(20) | YES  |     | NULL    |                |
+| STUMOBILE | varchar(10) | YES  |     | NULL    |                |
+| STUMARKS  | int         | YES  |     | NULL    |                |
++-----------+-------------+------+-----+---------+----------------+
+4 rows in set (0.03 sec)
+
+mysql> INSERT INTO STUDENTS(STUNAME,STUMOBILE,STUMARKS)
+    -> VALUES
+    -> ('SUNNY','9585458545',78),
+    -> ('BUNNY','6318578411',89),
+    -> ('VINNY','8318578456',91),
+    -> ('CHINNY','7318578458',61);
+Query OK, 4 rows affected (0.03 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> SELECT*FROM STUDENTS;
++-------+---------+------------+----------+
+| STUID | STUNAME | STUMOBILE  | STUMARKS |
++-------+---------+------------+----------+
+|     1 | SUNNY   | 9585458545 |       78 |
+|     2 | BUNNY   | 6318578411 |       89 |
+|     3 | VINNY   | 8318578456 |       91 |
+|     4 | CHINNY  | 7318578458 |       61 |
++-------+---------+------------+----------+
+4 rows in set (0.00 sec)
+
+mysql> CREATE USER JANI IDENTIFIED BY JANI123;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'JANI123' at line 1
+mysql>
+mysql> CREATE USER JANI IDENTIFIED BY 'JANI123';
+Query OK, 0 rows affected (0.14 sec)
+
+mysql> CREATE USER CHINNU IDENTIFIED BY 'CHINNU@123';
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> GRANT SELECT,INSERT,UPDATE ON STUDENTS TO JANI;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> GRANT ALL PRIVILEGES ON STUDENTS TO CHINNU;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> REVOKE INSERT,UPDATE ON STUDENTS FROM JANI;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> REVOKE UPDATE,DELETE ON STUDENTS FROM CHINNU;
+Query OK, 0 rows affected (0.03 sec)
+
+
+*************************
+C:\Program Files\MySQL\MySQL Server 8.0\bin
+
+FOR ----------- JANI
+====================
+Microsoft Windows [Version 10.0.26200.8875]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin>MySQL -u JANI -p
+Enter password: *******
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 15
+Server version: 8.0.46 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2026, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> USE DA4
+Database changed
+mysql> SELECT*FROM STUDENTS;
++-------+---------+------------+----------+
+| STUID | STUNAME | STUMOBILE  | STUMARKS |
++-------+---------+------------+----------+
+|     1 | SUNNY   | 9585458545 |       78 |
+|     2 | BUNNY   | 6318578411 |       89 |
+|     3 | VINNY   | 8318578456 |       91 |
+|     4 | CHINNY  | 7318578458 |       61 |
++-------+---------+------------+----------+
+4 rows in set (0.00 sec)
+
+mysql> INSERT INTO STUDENTS VALUES(5,'JENNY','6585485485',29);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> SELECT*FROM STUDENTS;
++-------+---------+------------+----------+
+| STUID | STUNAME | STUMOBILE  | STUMARKS |
++-------+---------+------------+----------+
+|     1 | SUNNY   | 9585458545 |       78 |
+|     2 | BUNNY   | 6318578411 |       89 |
+|     3 | VINNY   | 8318578456 |       91 |
+|     4 | CHINNY  | 7318578458 |       61 |
+|     5 | JENNY   | 6585485485 |       29 |
++-------+---------+------------+----------+
+5 rows in set (0.00 sec)
+
+mysql> UPDATE STUDENTS SET STUMARKS=96 WHERE STUID=5;
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT*FROM STUDENTS;
++-------+---------+------------+----------+
+| STUID | STUNAME | STUMOBILE  | STUMARKS |
++-------+---------+------------+----------+
+|     1 | SUNNY   | 9585458545 |       78 |
+|     2 | BUNNY   | 6318578411 |       89 |
+|     3 | VINNY   | 8318578456 |       91 |
+|     4 | CHINNY  | 7318578458 |       61 |
+|     5 | JENNY   | 6585485485 |       96 |
++-------+---------+------------+----------+
+5 rows in set (0.00 sec)
+
+mysql> DELETE FROM STUDENTS WHERE STUID=5;
+ERROR 1142 (42000): DELETE command denied to user 'JANI'@'localhost' for table 'students'
+mysql>
+mysql> INSERT INTO STUDENTS VALUES(6,'PENNY','9585485485',28);
+ERROR 1142 (42000): INSERT command denied to user 'JANI'@'localhost' for table 'students'
+mysql>
+
+
+
+*************************
+C:\Program Files\MySQL\MySQL Server 8.0\bin
+
+FOR ----------- CHINNU
+======================
+
+Microsoft Windows [Version 10.0.26200.8875]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin>MySql -u CHINNU -p
+Enter password: **********
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 16
+Server version: 8.0.46 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2026, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> USE DA4;
+Database changed
+mysql> SELECT*FROM STUDENTS;
++-------+---------+------------+----------+
+| STUID | STUNAME | STUMOBILE  | STUMARKS |
++-------+---------+------------+----------+
+|     1 | SUNNY   | 9585458545 |       78 |
+|     2 | BUNNY   | 6318578411 |       89 |
+|     3 | VINNY   | 8318578456 |       91 |
+|     4 | CHINNY  | 7318578458 |       61 |
+|     5 | JENNY   | 6585485485 |       96 |
++-------+---------+------------+----------+
+5 rows in set (0.02 sec)
+
+mysql> DELETE FROM STUDENTS WHERE STUID=4;
+Query OK, 1 row affected (0.03 sec)
+
+mysql> SELECT*FROM STUDENTS;
++-------+---------+------------+----------+
+| STUID | STUNAME | STUMOBILE  | STUMARKS |
++-------+---------+------------+----------+
+|     1 | SUNNY   | 9585458545 |       78 |
+|     2 | BUNNY   | 6318578411 |       89 |
+|     3 | VINNY   | 8318578456 |       91 |
+|     5 | JENNY   | 6585485485 |       96 |
++-------+---------+------------+----------+
+4 rows in set (0.00 sec)
+
