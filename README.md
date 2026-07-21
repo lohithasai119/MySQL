@@ -22,3 +22,7 @@ On Day 4 of my MySQL learning journey, I explored **SQL Data Types** and **Const
 ## 📅 Day 5 – Data Manipulation Language (DML)
 
 On Day 5 of my MySQL learning journey, I explored **Data Manipulation Language (DML)** commands used to manage and modify data in database tables. I practiced **INSERT**, **UPDATE**, and **DELETE** operations, and learned the differences between **TRUNCATE** and **DROP** commands. This session strengthened my understanding of performing data manipulation tasks and managing database records efficiently using SQL.
+
+## 📅 Day 6 – AUTO_INCREMENT, Generated Columns, and DCL Commands
+
+On Day 6 of my MySQL learning journey, I explored **AUTO_INCREMENT**, **Generated Columns**, and **Data Control Language (DCL)** commands. I learned how to create tables with auto-incrementing primary keys, create backup tables using `CREATE TABLE AS SELECT`, and use generated columns to calculate values automatically. I also studied **GRANT** and **REVOKE** commands to manage user permissions and access control in MySQL. This session strengthened my understanding of database automation, backup creation, and database security using user privileges.
