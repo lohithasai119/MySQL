@@ -1,0 +1,246 @@
+4.TCL(Transaction control language)
+--------
+def: The process of combining all related operations into a single unit and executing them according to the 
+rule "either all operations should be succeed or none should be succeed" is called Transaction management.
+
+->A transaction is considered a single unit of work and follows the principle
+
+"either all or none"
+
+example: funds transfer
+
+->consider a money transfer process between two accounts.
+1.debit amount from the sender's account.
+2.credit amount from the receiver's account.
+
+->Both operations should be executed as a single transaction.
+->if the amount is debited from sender's account successfully. but crediting the receiver's account fails.
+it may lead to data inconsistency problems.
+
+There are two types of transactions such as
+1.Local transaction
+2.Global transaction
+
+1.Local transaction
+-------------------
+In local transactions, all operations of a transaction are executed in the same database.
+example: Funds transfer from one account to another account where both accounts belongs to
+         the same bank. 
+
+2.Global transaction
+--------------------
+In global transaction , operations of a transaction are executed on different databases.
+example: Funds transfer from one account to another account where both accounts belongs to
+         the different banks.
+
+ACID Properties
+---------------
+Atomicity: all or nothing
+Consistency: The database remains in a valid state
+Isolation: Transactions do not interface with each other
+Durability: Committed changes are permanent
+
+
+TCL Commands 
+------------
+Commit 
+Rollback
+Save point
+
+Commit 
+------
+
+mysql> use da4
+Database changed
+mysql> show tables;
++-----------------+
+| Tables_in_da4   |
++-----------------+
+| backupemployees |
+| company_staff   |
+| employees       |
+| products        |
+| students        |
++-----------------+
+5 rows in set (0.21 sec)
+
+mysql> CREATE TABLE EMPLOYEE(
+    -> EMP_ID INT PRIMARY KEY,
+    -> EMP_NAME VARCHAR(30),
+    -> SALARY DECIMAL(10,2)
+    -> );
+Query OK, 0 rows affected (0.20 sec)
+
+mysql> DESC EMPLOYEE;
++----------+---------------+------+-----+---------+-------+
+| Field    | Type          | Null | Key | Default | Extra |
++----------+---------------+------+-----+---------+-------+
+| EMP_ID   | int           | NO   | PRI | NULL    |       |
+| EMP_NAME | varchar(30)   | YES  |     | NULL    |       |
+| SALARY   | decimal(10,2) | YES  |     | NULL    |       |
++----------+---------------+------+-----+---------+-------+
+3 rows in set (0.03 sec)
+
+mysql> START TRANSACTION;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> INSERT INTO EMPLOYEE VALUES(111,'LOHI',50000);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> INSERT INTO EMPLOYEE VALUES(222,'MANU',60000);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> COMMIT;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> SELECT*FROM EMPLOYEE;
++--------+----------+----------+
+| EMP_ID | EMP_NAME | SALARY   |
++--------+----------+----------+
+|    111 | LOHI     | 50000.00 |
+|    222 | MANU     | 60000.00 |
++--------+----------+----------+
+2 rows in set (0.00 sec)
+
+
+
+Rollback
+--------
+
+
+mysql> START TRANSACTION;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> UPDATE EMPLOYEE SET SALARY=90000 WHERE EMP_ID=111;
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT*FROM EMPLOYEE;
++--------+----------+----------+
+| EMP_ID | EMP_NAME | SALARY   |
++--------+----------+----------+
+|    111 | LOHI     | 90000.00 |
+|    222 | MANU     | 60000.00 |
++--------+----------+----------+
+2 rows in set (0.00 sec)
+
+mysql> ROLLBACK;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> SELECT*FROM EMPLOYEE;
++--------+----------+----------+
+| EMP_ID | EMP_NAME | SALARY   |
++--------+----------+----------+
+|    111 | LOHI     | 50000.00 |
+|    222 | MANU     | 60000.00 |
++--------+----------+----------+
+2 rows in set (0.00 sec)
+
+LOCK
+----
+
+mysql> CREATE DATABASE LOCK_DEMO;
+Query OK, 1 row affected (0.03 sec)
+
+mysql> USE LOCK_DEMO;
+Database changed
+mysql> CREATE TABLE EMPLOYEE(
+    -> EMP_ID INT PRIMARY KEY,
+    -> EMP_NAME VARCHAR(50),
+    -> DEPARTMENT VARCHAR(50),
+    -> SALARY DECIMAL(10,2)
+    -> );
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> INSERT INTO EMPLOYEE VALUES
+    -> (101,'RAHUL','IT',30000),
+    -> (102,'PRIYA','HR',45000),
+    -> (103,'KIRAN','FINANCE',55000);
+Query OK, 3 rows affected (0.03 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> LOCK TABLES EMPLOYEE WRITE;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> UNLOCK TABLES;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> LOCK TABLES EMPLOYEE READ;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> UNLOCK TABLES;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> START TRANSACTION;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> SELECT*FROM EMPLOYEE WHERE EMP_ID=101 FOR UPDATE;
++--------+----------+------------+---------+
+| EMP_ID | EMP_NAME | DEPARTMENT | SALARY  |
++--------+----------+------------+---------+
+|    101 | RAHUL    | IT         | 6500.00 |
++--------+----------+------------+---------+
+1 row in set (0.00 sec)
+
+
+LOCK
+----
+
+def: Locking is a mechanism used by the database to control concurrent access data.
+->it ensures that multiple users access the same data simultanoueluy the database 
+maintains consistency, integrity and prevent conflicts.
+
+1.shared Lock
+-------------
+def: A shared lock allows to transaction to read data.
+->Multiple transactions can hold a shared lock on the same row.
+-> no transaction can modify the row until all shared locks are 
+released.
+
+characteristics:
+read only
+multiple users can read simultaneously
+blocks updates and deletes.
+
+
+2.Exclusive Lock
+-----------------
+def: An Exclusive lock allows a transaction to modify data.
+ while an exclusive lock exists:
+-> no other transaction can read or modify that row.
+-> only the transaction holding the lock can update/delete the data.
+
+characteristics:
+used for INSERT, UPDATE, DELETE
+only one exclusive lock at a time
+blocks both read (locking reads) and writes
+
+
+3.Intent Lock
+--------------
+def: An intent lock is a table level lock that indicates a transaction intends to place
+row-level locks.
+-> It helps MySQL quickly determine whether a table-level lock conflicts with existing row locks.
+->user do not usually create intent locks manually .In no DB manages them automatically.
+
+real-life examples
+imagine a library:
+shared lock-> many students can read the same book at the same time.
+exclusive lock->One student borrows the book, so nobody else can read or borrow it until it is returned.
+intent lock-> The librarian lock marks that someone is about to read or borrow books from a shelf,
+helping coordinate access without checking every book individually.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
