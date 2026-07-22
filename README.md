@@ -34,3 +34,7 @@ On Day 7 of my MySQL learning journey, I explored **Transaction Control Language
 ## 📅 Day 8 – Constraints and Referential Actions
 
 On Day 8 of my MySQL learning journey, I explored **Constraints** and **Referential Actions**, which are essential for maintaining data integrity and consistency in relational databases. I learned about **NOT NULL, UNIQUE, PRIMARY KEY, COMPOSITE KEY, FOREIGN KEY, CHECK, and DEFAULT** constraints, and understood how they prevent invalid data and enforce relationships between tables. I also studied referential actions such as **ON DELETE CASCADE, ON UPDATE CASCADE, ON DELETE SET NULL, and ON UPDATE SET NULL**. This session strengthened my understanding of database design, table relationships, and enforcing data integrity rules in MySQL.
+
+## 📅 Day 9 – SQL Operators and Conditional Operations
+
+On Day 9 of my MySQL learning journey, I explored **SQL Operators**, including **Arithmetic, Comparison, and Logical Operators**. I practiced performing calculations using arithmetic operators, filtering records with comparison operators, and combining conditions using logical operators such as **AND, OR, and NOT**. I also worked with `UPDATE` and `DELETE` statements using conditional expressions to modify and remove records based on specific criteria. This session strengthened my understanding of writing conditional SQL queries and performing real-time data manipulation operations efficiently.
