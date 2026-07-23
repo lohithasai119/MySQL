@@ -38,3 +38,7 @@ On Day 8 of my MySQL learning journey, I explored **Constraints** and **Referent
 ## 📅 Day 9 – SQL Operators and Conditional Operations
 
 On Day 9 of my MySQL learning journey, I explored **SQL Operators**, including **Arithmetic, Comparison, and Logical Operators**. I practiced performing calculations using arithmetic operators, filtering records with comparison operators, and combining conditions using logical operators such as **AND, OR, and NOT**. I also worked with `UPDATE` and `DELETE` statements using conditional expressions to modify and remove records based on specific criteria. This session strengthened my understanding of writing conditional SQL queries and performing real-time data manipulation operations efficiently.
+
+## 📅 Day 10 – NULL, BETWEEN, IN, LIKE, and CASE Operators
+
+On Day 10 of my MySQL learning journey, I explored important SQL operators used for filtering, searching, and categorizing data. I learned how to work with **NULL values** using `IS NULL` and `IS NOT NULL`, filter records using the **BETWEEN** operator, select records using the **IN** operator, search patterns using the **LIKE** operator with `%` and `_` wildcards, and categorize data using the **CASE** operator. I also practiced `SELECT`, `UPDATE`, and `DELETE` operations with these operators. This session strengthened my understanding of writing conditional queries, performing pattern-based searches, handling missing data, and generating categorized results in MySQL.
