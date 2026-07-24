@@ -42,3 +42,7 @@ On Day 9 of my MySQL learning journey, I explored **SQL Operators**, including *
 ## 📅 Day 10 – NULL, BETWEEN, IN, LIKE, and CASE Operators
 
 On Day 10 of my MySQL learning journey, I explored important SQL operators used for filtering, searching, and categorizing data. I learned how to work with **NULL values** using `IS NULL` and `IS NOT NULL`, filter records using the **BETWEEN** operator, select records using the **IN** operator, search patterns using the **LIKE** operator with `%` and `_` wildcards, and categorize data using the **CASE** operator. I also practiced `SELECT`, `UPDATE`, and `DELETE` operations with these operators. This session strengthened my understanding of writing conditional queries, performing pattern-based searches, handling missing data, and generating categorized results in MySQL.
+
+## 📅 Day 11 – Aggregate Functions in MySQL
+
+On Day 11 of my MySQL learning journey, I explored **Aggregate Functions**, which are used to perform calculations on groups of data and return a single result. I learned how to use functions such as **COUNT()**, **SUM()**, **AVG()**, **MIN()**, and **MAX()** to analyze and summarize data stored in database tables. This session strengthened my understanding of retrieving meaningful insights from datasets and prepared me for writing more effective SQL queries.
